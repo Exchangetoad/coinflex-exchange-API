@@ -10,6 +10,21 @@ LIVE site
 
 [scaled]: SCALE.md
 
+## Contents
+
+Currently, the Futures API supports the following endpoints:
+
+`/borrower/collateral/`     &#09; ([GET](#get-borrowercollateral))   
+`/borrower/collateral/<id>` &#09; ([GET](#get-borrowercollateralid))   
+`/borrower/conversion/`     &#09; ([GET](#get-borrowerconversion) | [POST](#post-borrowerconversion))   
+`/borrower/events`          &#09; ([GET](#get-borrowerevents))   
+`/borrower/offers/`         &#09; ([GET](#get-borroweroffers))   
+`/borrower/offers/<id>`     &#09; ([GET](#get-borroweroffersid))   
+`/borrower/loans/`          &#09; ([GET](#get-borrowerloans) | [POST](#post-borrowerloans))   
+`/borrower/loans/<id>`      &#09; ([GET](#get-borrowerloansid) | [POST](#post-borrowerloansid) | [DELETE](#delete-borrowerloansid))   
+`/borrower/margin_ratios/`  &#09; ([GET](#get-borrowermargin_ratios)  
+
+
 ## Authentication
 
 All method calls require [HTTP Basic authentication][]. The username portion of the Basic credentials is constructed by concatenating the numeric user ID, a slash, and the user's API authentication cookie. The password portion is simply the user's login passphrase.
@@ -93,6 +108,78 @@ All method calls require [HTTP Basic authentication][]. The username portion of 
 	* **`promo`:** This loan was initiated against a promotional offer.
 	* **`facility`:** This loan represents a draw-down from a loan facility that has been granted to the user.
 	* **`corporate`:** This loan was initiated against an offer that was available to corporate customers only.
+
+---
+
+## `GET /borrower/conversion/`
+
+Returns the list of asset pairs available for conversion.
+
+### Request
+
+	GET /borrower/conversion/ HTTP/1.1
+
+### Response
+
+	HTTP/1.1 200 OK
+	Content-Type: application/json; charset=US-ASCII
+	
+	[
+		{
+			"asset_from": <integer>,
+			"asset_to": <integer>
+		},
+		…
+	]
+
+* **`asset_from`:** *(integer)* The numeric code of the asset to convert from.
+* **`asset_to`:** *(integer)* The numeric code of the asset to convert to.
+
+---
+
+## `POST /borrower/conversion/`
+
+Initiates a loan.
+
+### Request
+
+	POST /borrower/conversion/ HTTP/1.1
+	Content-Type: application/x-www-form-urlencoded
+	
+	asset_from=<integer>&asset_to=<integer>&amount=<integer>
+
+* **`asset_from`:** *(integer)* .
+* **`asset_to`:** *(integer)* .
+* **`amount`:** *(integer)* The [scaled][] amount of the asset to convert from.
+
+### Response
+
+	HTTP/1.1 201 Created
+	Content-Type: application/json; charset=US-ASCII
+	
+	{
+		"asset_from": <integer>,
+		"asset_to": <integer>,
+		"amount": <integer>
+	}
+
+The `Location` response header contains the numeric identifier of the newly initiated loan.
+
+### Errors
+
+* If the asset code specified in **`asset_from`** or **`asset_to`** was not found:
+
+		HTTP/1.1 404 Not Found
+		Content-Length: 0
+		
+		<explanation>
+
+* If the request is invalid (e.g. missing attributes, not enough balance) this method returns:
+
+		HTTP/1.1 400 Bad Request
+		Content-Type: text/plain; charset=US-ASCII
+		
+		<explanation>
 
 ---
 
