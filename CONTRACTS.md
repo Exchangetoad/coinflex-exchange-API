@@ -10,7 +10,7 @@ increase the margin requirement for all users. In the final 24 hours leading to 
 requirement will be maintained up until expiry.
 
 | Month | 2020 (ramp-up start)| 2020 (expiry)     | code |
-|------:|:--------------------|------------------:|-----:|
+|------:|----------:----------|------------------:|-----:|
 |  JAN  |    Wed, 29th Jan    |   Fri, 31st Jan   |  F   |
 |  FEB  |    Wed, 26th Feb    |   Fri, 28th Feb   |  G   |
 |  MAR  |    Wed, 25th Mar    |   Fri, 27th Mar   |  H   |
