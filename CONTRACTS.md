@@ -6,12 +6,12 @@
 Futures contracts will run for 2 months and end at midday (UTC) on the final Friday of the named month.
 There will also be a ramp-up period that starts on Wednesday at midday (UTC) leading up to the final Friday of the
 named month. In the 24 hours starting from the Wednesday at 12pm (UTC) until 12pm (UTC) on Thursday, CoinFLEX will 
-increase the margin requirements for all users. In the final 24 hours leading to the final Friday of the month, margin
-requirements will be maintained up until expiry.
+increase the margin requirement for all users. In the final 24 hours leading to the final Friday of the month, this margin
+requirement will be maintained up until expiry.
 
 | Month | 2020 (ramp-up start)| 2020 (expiry)     | code |
-|------:|--------------------:|------------------:|-----:|
-|  JAN  |Wed, 29th Jan        |   Fri, 31st Jan   |  F   |
+|------:|:--------------------|------------------:|-----:|
+|  JAN  |    Wed, 29th Jan    |   Fri, 31st Jan   |  F   |
 |  FEB  |    Wed, 26th Feb    |   Fri, 28th Feb   |  G   |
 |  MAR  |    Wed, 25th Mar    |   Fri, 27th Mar   |  H   |
 |  APR  |    Wed, 22nd Apr    |   Fri, 24th Apr   |  J   |
